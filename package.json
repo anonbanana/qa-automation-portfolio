@@ -1,0 +1,23 @@
+{
+  "name": "qa-automation-portfolio",
+  "version": "1.0.0",
+  "description": "Portofolio QA: automation testing dasar (ISTQB Foundation) terhadap the-internet.herokuapp.com memakai Playwright",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "qa",
+    "testing",
+    "playwright",
+    "automation",
+    "portfolio",
+    "istqb"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
