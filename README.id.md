@@ -39,9 +39,9 @@ Saya menyusun test case dan mengotomasikannya memakai Playwright. Fokusnya senga
 │   ├── file-download.spec.js       # unduh file
 │   └── frames.spec.js              # konten di dalam iframe
 ├── test-cases/
-│   └── test-cases.md       # contoh test case tertulis (manual)
+│   └── test-cases.md       # test case tertulis (manual)
 ├── reports/
-│   └── bug-report-example.md # contoh laporan temuan
+│   └── bug-report-example.md # laporan temuan
 ├── docs/screenshots/       # screenshot halaman untuk README
 └── .github/workflows/ci.yml # test jalan otomatis tiap push
 ```
@@ -87,4 +87,4 @@ npm run report
 ## Catatan
 
 - Situs target di-host di Heroku free tier — dyno bisa tertidur, jadi request pertama agak lambat. Timeout sudah disesuaikan, dan CI memanaskan situs dulu sebelum test.
-- Beberapa test bisa berstatus *flaky* (lulus saat dicoba ulang) karena server lambat, bukan karena test-nya salah. Ini didokumentasikan sebagai bagian dari pengalaman testing nyata.
+- Beberapa test bisa berstatus *flaky* (lulus saat dicoba ulang) karena server lambat — test-nya sendiri benar.

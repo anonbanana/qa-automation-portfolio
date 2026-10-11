@@ -1,12 +1,10 @@
-# Contoh Laporan Temuan (Bug Report)
-
-Format sederhana yang biasa dipakai di tim QA.
+# Laporan Temuan (Bug Report)
 
 ---
 
 ## [BUG-001] Editor TinyMCE di halaman iFrame tidak bisa digunakan (read-only)
 
-> Temuan aktual — ditemukan saat menjalankan test otomatis pada 11 Oktober 2026.
+> Ditemukan saat menjalankan test otomatis — 11 Oktober 2026.
 
 | | |
 |---|---|

@@ -39,9 +39,9 @@ I designed test cases and automated them using Playwright. The scope is delibera
 │   ├── file-download.spec.js       # file download
 │   └── frames.spec.js              # content inside an iframe
 ├── test-cases/
-│   └── test-cases.md       # written (manual) test case examples
+│   └── test-cases.md       # written (manual) test cases
 ├── reports/
-│   └── bug-report-example.md # example defect report
+│   └── bug-report-example.md # defect report
 ├── docs/screenshots/       # page screenshots used in this README
 └── .github/workflows/ci.yml # tests run automatically on every push
 ```
@@ -87,4 +87,4 @@ npm run report
 ## Notes
 
 - The target site runs on a free Heroku dyno — it falls asleep, so the first request is slow. Timeouts are configured accordingly, and CI warms the site up before running tests.
-- Some tests may report as *flaky* (passing on retry) due to server slowness, not test defects. This is documented as part of the real-world testing experience.
+- Some tests may report as *flaky* (passing on retry) because the server is slow — the tests themselves are correct.

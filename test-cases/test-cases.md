@@ -1,7 +1,6 @@
-# Contoh Test Case — the-internet.herokuapp.com
+# Test Case — the-internet.herokuapp.com
 
-Ditulis dengan format sederhana ISTQB Foundation Level.
-Kode: `TC-<MODUL>-<URUT>`.
+Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
