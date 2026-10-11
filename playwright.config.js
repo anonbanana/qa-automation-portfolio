@@ -4,8 +4,10 @@ export default defineConfig({
   testDir: "./tests",
   timeout: 60_000,
   expect: { timeout: 10_000 },
-  fullyParallel: true,
-  retries: 1,
+  // server latihan (Heroku free) lambat & mudah kewalahan — jalankan serial
+  // supaya tidak rebutan request, dan beri retries untuk jaringan yang tidak stabil
+  workers: 1,
+  retries: 2,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL: "https://the-internet.herokuapp.com",
