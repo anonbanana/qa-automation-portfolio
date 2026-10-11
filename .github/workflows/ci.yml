@@ -29,8 +29,14 @@ jobs:
         run: |
           for path in login checkboxes dropdown inputs add_remove_elements/ javascript_alerts; do
             echo "warming: $path"
-            curl -s -o /dev/null --retry 5 --retry-delay 15 --retry-all-errors --max-time 90 \
-              "https://the-internet.herokuapp.com/$path"
+            for i in 1 2 3 4 5; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 "https://the-internet.herokuapp.com/$path" || echo "000")
+              echo "  attempt $i: $code"
+              if [ "$code" = "200" ]; then
+                break
+              fi
+              sleep 15
+            done
           done
 
       - name: Run tests
