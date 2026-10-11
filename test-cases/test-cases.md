@@ -137,8 +137,8 @@ Kode test: `TC-<MODUL>-<URUT>`.
 | **Teknik** | Equivalence partitioning — link unduhan valid |
 
 **Given** saya berada di halaman Download
-**When** saya klik link `SomeFile.txt`
-**Then** browser mulai mengunduh file bernama `SomeFile.txt` tanpa error
+**When** saya klik link file pertama di daftar
+**Then** browser mulai mengunduh file dengan nama sesuai link, tanpa error
 
 ---
 
