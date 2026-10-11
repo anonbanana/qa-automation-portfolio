@@ -4,11 +4,41 @@ Format sederhana yang biasa dipakai di tim QA.
 
 ---
 
-## [BUG-001] Checkbox pertama di halaman Checkboxes tidak memiliki keterangan teks
+## [BUG-001] Editor TinyMCE di halaman iFrame tidak bisa digunakan (read-only)
+
+> Temuan aktual — ditemukan saat menjalankan test otomatis pada 11 Oktober 2026.
 
 | | |
 |---|---|
 | **ID** | BUG-001 |
+| **Modul** | iFrame (`/iframe`) |
+| **Severity** | Major |
+| **Priority** | High |
+| **Status** | Open |
+
+### Deskripsi
+Editor TinyMCE di dalam halaman `/iframe` tidak bisa diklik maupun diketik. Setiap percobaan dikunci oleh dialog "TinyMCE is in read-only mode because you have no more editor loads available this month." Penyebabnya kuota editor gratis dari penyedia TinyMCE habis untuk bulan berjalan.
+
+### Langkah reproduksi
+1. Buka `https://the-internet.herokuapp.com/iframe`
+2. Coba klik di dalam area editor
+
+### Hasil yang diharapkan
+Editor bisa diklik dan ditekan, pengguna bisa mengetik isi konten.
+
+### Hasil aktual
+Dialog read-only muncul dan memblokir semua interaksi. Editor hanya menampilkan teks default "Your content goes here."
+
+### Dampak
+Pengguna tidak bisa mencoba fitur utama halaman ini sama sekali. Test otomatis yang menguji "mengetik di editor" tidak bisa dilakukan sampai masalah ini diperbaiki.
+
+---
+
+## [BUG-002] Checkbox pertama di halaman Checkboxes tidak memiliki keterangan teks
+
+| | |
+|---|---|
+| **ID** | BUG-002 |
 | **Modul** | Checkboxes (`/checkboxes`) |
 | **Severity** | Low (cosmetic / usability) |
 | **Priority** | Low |
@@ -22,7 +52,7 @@ Di halaman `/checkboxes` ada dua checkbox. Checkbox kedua memiliki teks keterang
 2. Amati kedua checkbox
 
 ### Hasil yang diharapkan
-Kedua checkbox memiliki teks keterangan yang menjelas isi opsi.
+Kedua checkbox memiliki teks keterangan yang menjelaskan isi opsi.
 
 ### Hasil aktual
 Checkbox pertama kosong tanpa keterangan; checkbox kedua bertuliskan "check me out".

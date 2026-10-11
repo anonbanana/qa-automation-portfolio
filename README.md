@@ -1,73 +1,90 @@
 # QA Automation Portfolio
 
+**English** | [Bahasa Indonesia](README.id.md)
+
 [![Tests](https://github.com/anonbanana/qa-automation-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/anonbanana/qa-automation-portfolio/actions/workflows/ci.yml)
 
-Portofolio automation testing tingkat **dasar (ISTQB Foundation Level)** terhadap [the-internet.herokuapp.com](https://the-internet.herokuapp.com) — situs dummy yang memang disediakan gratis untuk latihan testing.
+Basic-level QA automation portfolio (ISTQB Foundation Level) built with Playwright against [the-internet.herokuapp.com](https://the-internet.herokuapp.com) — a free public practice site.
 
-## Tentang proyek ini
+## About this project
 
-Saya menyusun test case dan mengotomasikannya memakai Playwright. Fokusnya sengaja dipertahankan di level dasar:
+I designed test cases and automated them using Playwright. The scope is deliberately kept at foundation level:
 
-- Alur uji yang jelas: login, form, checkbox, dropdown, elemen dinamis, JavaScript alert.
-- Teknik desain test sederhana: **equivalence partitioning** dan **boundary value analysis** (diterapkan di pengujian form login dan input angka).
-- Hasil run yang bisa dilihat: HTML report + screenshot otomatis saat gagal.
+- Clear test flows: login, forms, checkboxes, dropdown, dynamic elements, JavaScript alerts, file download, iframes.
+- Simple test design techniques: **equivalence partitioning** and **boundary value analysis** (applied to the login form and number input tests).
+- Visible results: HTML report + automatic screenshots on failure.
+
+![Login page](docs/screenshots/login.png)
 
 ## Tech stack
 
-| Komponen | Pilihan |
+| Component | Choice |
 |---|---|
 | Automation framework | Playwright Test (JavaScript) |
 | Browser | Chromium |
 | CI | GitHub Actions |
-| Sistem under test | the-internet.herokuapp.com |
+| System under test | the-internet.herokuapp.com |
 
-## Struktur repo
+## Repository structure
 
 ```
-├── tests/                  # 19 test case terotomasi (6 modul)
+├── tests/                  # 25 automated test cases (9 modules)
 │   ├── login.spec.js               # form authentication
-│   ├── checkboxes.spec.js          # centang / uncentang
-│   ├── dropdown.spec.js            # pilihan dropdown
-│   ├── inputs.spec.js              # input angka (validasi)
-│   ├── add-remove-elements.spec.js # elemen dinamis
-│   └── javascript-alerts.spec.js   # alert, confirm, prompt
+│   ├── checkboxes.spec.js          # check / uncheck
+│   ├── dropdown.spec.js            # dropdown selection
+│   ├── inputs.spec.js              # number input (validation)
+│   ├── add-remove-elements.spec.js # dynamic elements
+│   ├── javascript-alerts.spec.js   # alert, confirm, prompt
+│   ├── broken-images.spec.js       # broken image detection
+│   ├── file-download.spec.js       # file download
+│   └── frames.spec.js              # content inside an iframe
 ├── test-cases/
-│   └── test-cases.md       # contoh test case tertulis (manual)
+│   └── test-cases.md       # written (manual) test case examples
 ├── reports/
-│   └── bug-report-example.md # contoh laporan temuan
-└── .github/workflows/ci.yml # jalankan test otomatis tiap push
+│   └── bug-report-example.md # example defect report
+├── docs/screenshots/       # page screenshots used in this README
+└── .github/workflows/ci.yml # tests run automatically on every push
 ```
 
-## Cara menjalankan
+## How to run
 
 ```bash
-# 1. install dependency
+# 1. install dependencies
 npm install
 
-# 2. install browser (sekali saja)
+# 2. install the browser (once)
 npx playwright install chromium
 
-# 3. jalankan semua test
+# 3. run all tests
 npm test
 
-# 4. lihat laporan HTML
+# 4. open the HTML report
 npm run report
 ```
 
-## Coverage pengujian
+## Test coverage
 
-| Modul | Skenario | Jumlah test |
+| Module | Scenarios | Tests |
 |---|---|---|
-| Login | login valid, password salah, username salah, cek label form | 4 |
-| Checkboxes | kondisi awal, uncentang, centang | 3 |
-| Dropdown | kondisi awal, pilih Option 1, pilih Option 2 | 3 |
-| Inputs | angka valid, teks ditolak browser, batas angka besar | 3 |
-| Add/Remove Elements | tambah 1, tambah 3, hapus 1 | 3 |
+| Login | valid login, wrong password, wrong username, form labels | 4 |
+| Checkboxes | initial state, uncheck, check | 3 |
+| Dropdown | initial state, select Option 1, select Option 2 | 3 |
+| Inputs | valid number, text rejected by browser, large number bound | 3 |
+| Add/Remove Elements | add 1, add 3, delete 1 | 3 |
 | JavaScript Alerts | alert accept, confirm accept, confirm dismiss | 3 |
+| Broken Images | image count, broken image detection | 2 |
+| Download | download a file, file list on page | 2 |
+| iFrame | page heading, default editor content | 2 |
 
-**Total: 19 test case**
+**Total: 25 test cases**
 
-## Catatan
+## Screenshots
 
-- Situs target di-host di Heroku free tier — dyno bisa tertidur, jadi request pertama agak lambat. Konfigurasi timeout sudah disesuaikan.
-- 3 test berstatus *flaky* (lulus setelah percobaan ulang) karena keterlambatan server, bukan karena test-nya salah.
+| Checkboxes | JavaScript Alerts | Download |
+|---|---|---|
+| ![Checkboxes](docs/screenshots/checkboxes.png) | ![JavaScript Alerts](docs/screenshots/javascript-alerts.png) | ![Download](docs/screenshots/download.png) |
+
+## Notes
+
+- The target site runs on a free Heroku dyno — it falls asleep, so the first request is slow. Timeouts are configured accordingly, and CI warms the site up before running tests.
+- Some tests may report as *flaky* (passing on retry) due to server slowness, not test defects. This is documented as part of the real-world testing experience.

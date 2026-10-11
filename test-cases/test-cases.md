@@ -97,3 +97,77 @@ Kode: `TC-<MODUL>-<URUT>`.
 **Given** saya berada di halaman JavaScript Alerts
 **When** saya klik tombol "Click for JS Alert" dan menerima alert
 **Then** muncul pesan "You successfully clicked an alert"
+
+---
+
+## Modul: Broken Images (`/broken_images`)
+
+### TC-BI-001 — Jumlah gambar sesuai harapan
+
+| | |
+|---|---|
+| **Prioritas** | Medium |
+| **Teknik** | Equivalence partitioning — jumlah elemen pada halaman |
+
+**Given** saya berada di halaman Broken Images
+**When** halaman selesai dimuat
+**Then** halaman menampilkan 4 gambar
+
+---
+
+### TC-BI-002 — Gambar rusak terdeteksi
+
+| | |
+|---|---|
+| **Prioritas** | Medium |
+| **Teknik** | Negative testing — memastikan kerusakan terdeteksi |
+
+**Given** saya berada di halaman Broken Images
+**When** saya periksa setiap gambar yang selesai dimuat
+**Then** ada tepat 2 gambar dengan lebar 0 piksel (gambar rusak sesuai data halaman ini)
+
+---
+
+## Modul: Download (`/download`)
+
+### TC-DL-001 — Unduh file dengan nama benar
+
+| | |
+|---|---|
+| **Prioritas** | High |
+| **Teknik** | Equivalence partitioning — link unduhan valid |
+
+**Given** saya berada di halaman Download
+**When** saya klik link `SomeFile.txt`
+**Then** browser mulai mengunduh file bernama `SomeFile.txt` tanpa error
+
+---
+
+### TC-DL-002 — Halaman menyediakan banyak file
+
+| | |
+|---|---|
+| **Prioritas** | Low |
+| **Teknik** | Boundary value — batas bawah jumlah link |
+
+**Given** saya berada di halaman Download
+**When** halaman selesai dimuat
+**Then** ada minimal 10 link file yang bisa diunduh
+
+---
+
+## Modul: iFrame (`/iframe`)
+
+### TC-IFR-001 — Heading halaman benar
+
+**Given** saya berada di halaman iFrame
+**When** halaman selesai dimuat
+**Then** judul halaman bertuliskan "An iFrame containing the TinyMCE WYSIWYG Editor"
+
+---
+
+### TC-IFR-002 — Konten default editor tampil
+
+**Given** saya berada di halaman iFrame
+**When** saya membuka isi iframe
+**Then** editor menampilkan teks default "Your content goes here."
