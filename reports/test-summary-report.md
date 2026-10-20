@@ -3,7 +3,7 @@
 | Item | Detail |
 |---|---|
 | Tanggal eksekusi | 20 Oktober 2026 |
-| Commit | `HEAD` branch `portfolio-completion` (lihat `git log -1`) |
+| Commit | `e37561d` (branch `portfolio-completion`) |
 | Target | `https://the-internet.herokuapp.com` |
 | Lingkungan | Linux, Node.js 20.20.2, Playwright 1.64.0, Chromium |
 | Perintah | `npx playwright test --reporter=list` |
