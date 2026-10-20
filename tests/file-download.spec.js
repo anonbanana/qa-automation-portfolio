@@ -1,31 +1,34 @@
-import { test, expect } from "@playwright/test";
+import { stat } from "node:fs/promises";
+
+import { expect, test } from "../fixtures/pages.js";
 
 test.describe("Halaman Download", () => {
-  test("TC-DL-001: klik link unduhan mengunduh file dengan nama benar", async ({
-    page,
+  test("TC-DL-001: klik link unduhan mengunduh file dengan nama dan isi benar", async ({
+    pages,
   }) => {
-    await page.goto("/download");
+    await pages.download.goto();
 
-    // halaman ini menampilkan daftar file dinamis, jadi ambil link pertama
-    const firstLink = page.locator('a[href^="download/"]').first();
-    const expectedName = await firstLink.getAttribute("href");
+    const href = await pages.download.firstHref();
+    expect(href).toBeTruthy();
 
-    const [download] = await Promise.all([
-      page.waitForEvent("download", { timeout: 45_000 }),
-      firstLink.click(),
-    ]);
+    const download = await pages.download.downloadFirst();
+    const expectedName = href.split("/")[1];
 
-    expect(download.suggestedFilename()).toBe(expectedName.split("/")[1]);
+    expect(download.suggestedFilename()).toBe(expectedName);
     expect(await download.failure()).toBeNull();
+
+    const filePath = await download.path();
+    expect(filePath).not.toBeNull();
+
+    const fileStat = await stat(filePath);
+    expect(fileStat.size).toBeGreaterThan(0);
   });
 
   test("TC-DL-002: halaman menampilkan minimal 10 link file unduhan", async ({
-    page,
+    pages,
   }) => {
-    await page.goto("/download");
+    await pages.download.goto();
 
-    const links = page.locator('a[href^="download/"]');
-
-    expect(await links.count()).toBeGreaterThanOrEqual(10);
+    expect(await pages.download.count()).toBeGreaterThanOrEqual(10);
   });
 });

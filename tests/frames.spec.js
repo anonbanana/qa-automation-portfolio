@@ -1,21 +1,20 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "../fixtures/pages.js";
+import { expected } from "../support/test-data.js";
 
 test.describe("Halaman iFrame", () => {
-  test("TC-IFR-001: halaman menampilkan heading editor", async ({ page }) => {
-    await page.goto("/iframe");
+  test("TC-IFR-001: halaman menampilkan heading editor", async ({ pages }) => {
+    await pages.frames.goto();
 
-    await expect(page.locator("h3")).toHaveText(
-      "An iFrame containing the TinyMCE WYSIWYG Editor"
-    );
+    await expect(pages.frames.heading).toHaveText(expected.iframeHeading);
   });
 
   test("TC-IFR-002: editor di dalam iframe menampilkan konten default", async ({
-    page,
+    pages,
   }) => {
-    await page.goto("/iframe");
+    await pages.frames.goto();
 
-    await expect(
-      page.frameLocator("iframe").locator("body")
-    ).toContainText("Your content goes here.");
+    await expect(pages.frames.editorBody).toContainText(
+      expected.iframeDefaultText
+    );
   });
 });

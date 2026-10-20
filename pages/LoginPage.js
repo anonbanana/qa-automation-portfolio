@@ -1,0 +1,21 @@
+export class LoginPage {
+  constructor(page) {
+    this.page = page;
+    this.usernameInput = page.locator("#username");
+    this.passwordInput = page.locator("#password");
+    this.submitButton = page.getByRole("button", { name: /login/i });
+    this.flash = page.locator("#flash");
+    this.usernameLabel = page.locator("label[for=username]");
+    this.passwordLabel = page.locator("label[for=password]");
+  }
+
+  async goto() {
+    await this.page.goto("/login");
+  }
+
+  async login(username, password) {
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.submitButton.click();
+  }
+}
