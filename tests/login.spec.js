@@ -1,48 +1,95 @@
-import { test, expect } from "@playwright/test";
-
-const VALID_USER = "tomsmith";
-const VALID_PASS = "SuperSecretPassword!";
+import { expect, test } from "../fixtures/pages.js";
+import { messages, users } from "../support/test-data.js";
 
 test.describe("Halaman Login", () => {
-  test("TC-LOGIN-001: login dengan kredensial valid berhasil", async ({ page }) => {
-    await page.goto("/login");
+  test("TC-LOGIN-001: login dengan kredensial valid berhasil", async ({
+    pages,
+    page,
+  }) => {
+    await pages.login.goto();
+    await pages.login.login(users.valid.username, users.valid.password);
 
-    await page.locator("#username").fill(VALID_USER);
-    await page.locator("#password").fill(VALID_PASS);
-    await page.locator("button[type=submit]").click();
-
-    await expect(page.locator("#flash")).toContainText("You logged into a secure area!");
+    await expect(pages.login.flash).toContainText(messages.loginSuccess);
     await expect(page).toHaveURL(/\/secure/);
   });
 
-  test("TC-LOGIN-002: login dengan password salah ditolak", async ({ page }) => {
-    await page.goto("/login");
+  test("TC-LOGIN-002: login dengan password salah ditolak", async ({
+    pages,
+    page,
+  }) => {
+    await pages.login.goto();
+    await pages.login.login(users.valid.username, users.invalidPassword);
 
-    await page.locator("#username").fill(VALID_USER);
-    await page.locator("#password").fill("password-salah");
-    await page.locator("button[type=submit]").click();
-
-    await expect(page.locator("#flash")).toContainText("Your password is invalid!");
+    await expect(pages.login.flash).toContainText(messages.invalidPassword);
     await expect(page).toHaveURL(/\/login/);
   });
 
-  test("TC-LOGIN-003: login dengan username salah ditolak", async ({ page }) => {
-    await page.goto("/login");
+  test("TC-LOGIN-003: login dengan username salah ditolak", async ({
+    pages,
+    page,
+  }) => {
+    await pages.login.goto();
+    await pages.login.login(users.invalidUsername, users.valid.password);
 
-    await page.locator("#username").fill("username-salah");
-    await page.locator("#password").fill(VALID_PASS);
-    await page.locator("button[type=submit]").click();
-
-    await expect(page.locator("#flash")).toContainText("Your username is invalid!");
+    await expect(pages.login.flash).toContainText(messages.invalidUsername);
     await expect(page).toHaveURL(/\/login/);
   });
 
-  test("TC-LOGIN-004: form login menampilkan label yang benar", async ({ page }) => {
-    await page.goto("/login");
+  test("TC-LOGIN-004: form login menampilkan label dan atribut yang benar", async ({
+    pages,
+  }) => {
+    await pages.login.goto();
 
-    await expect(page.locator("label[for=username]")).toHaveText("Username");
-    await expect(page.locator("label[for=password]")).toHaveText("Password");
-    await expect(page.locator("#username")).toHaveAttribute("name", "username");
-    await expect(page.locator("#password")).toHaveAttribute("type", "password");
+    await expect(pages.login.usernameLabel).toHaveText("Username");
+    await expect(pages.login.passwordLabel).toHaveText("Password");
+    await expect(pages.login.usernameInput).toHaveAttribute(
+      "name",
+      "username"
+    );
+    await expect(pages.login.passwordInput).toHaveAttribute("type", "password");
+  });
+
+  test("TC-LOGIN-005: username dan password kosong ditolak", async ({
+    pages,
+    page,
+  }) => {
+    await pages.login.goto();
+    await pages.login.login("", "");
+
+    await expect(pages.login.flash).toContainText(messages.invalidUsername);
+    await expect(page).toHaveURL(/\/login/);
+  });
+
+  test("TC-LOGIN-006: password kosong dengan username valid ditolak", async ({
+    pages,
+    page,
+  }) => {
+    await pages.login.goto();
+    await pages.login.login(users.valid.username, "");
+
+    await expect(pages.login.flash).toContainText(messages.invalidPassword);
+    await expect(page).toHaveURL(/\/login/);
+  });
+
+  test("TC-LOGIN-007: username dan password berisi spasi ditolak", async ({
+    pages,
+    page,
+  }) => {
+    await pages.login.goto();
+    await pages.login.login(users.whitespace, users.whitespace);
+
+    await expect(pages.login.flash).toContainText(messages.invalidUsername);
+    await expect(page).toHaveURL(/\/login/);
+  });
+
+  test("TC-LOGIN-008: username bersifat case-sensitive", async ({
+    pages,
+    page,
+  }) => {
+    await pages.login.goto();
+    await pages.login.login(users.uppercaseUsername, users.valid.password);
+
+    await expect(pages.login.flash).toContainText(messages.invalidUsername);
+    await expect(page).toHaveURL(/\/login/);
   });
 });

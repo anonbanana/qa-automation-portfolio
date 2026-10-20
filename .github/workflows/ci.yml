@@ -27,7 +27,7 @@ jobs:
       # Bangunkan dulu semua halaman yang diuji sebelum menjalankan test.
       - name: Warm up target site
         run: |
-          for path in login checkboxes dropdown inputs add_remove_elements/ javascript_alerts; do
+          for path in login checkboxes dropdown inputs add_remove_elements/ javascript_alerts broken_images download iframe; do
             echo "warming: $path"
             for i in 1 2 3 4 5; do
               code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 "https://the-internet.herokuapp.com/$path" || echo "000")
@@ -43,7 +43,7 @@ jobs:
         run: npx playwright test
 
       - name: Upload report
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report

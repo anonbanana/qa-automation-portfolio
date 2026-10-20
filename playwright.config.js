@@ -4,10 +4,11 @@ export default defineConfig({
   testDir: "./tests",
   timeout: 60_000,
   expect: { timeout: 10_000 },
-  // server latihan (Heroku free) lambat & mudah kewalahan — jalankan serial
-  // supaya tidak rebutan request, dan beri retries untuk jaringan yang tidak stabil
+  // Server latihan (Heroku free) lambat & mudah kewalahan — jalankan serial
+  // supaya tidak rebutan request. Retry hanya di CI untuk gangguan jaringan;
+  // di lokal retry 0 agar flakiness terlihat apa adanya.
   workers: 1,
-  retries: 2,
+  retries: process.env.CI ? 2 : 0,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL: "https://the-internet.herokuapp.com",
