@@ -1,4 +1,4 @@
-# Test Case — the-internet.herokuapp.com
+# Test Case: the-internet.herokuapp.com
 
 Kode test: `TC-<MODUL>-<URUT>`.
 
@@ -6,13 +6,13 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ## Modul: Form Authentication (`/login`)
 
-### TC-LOGIN-001 — Login dengan kredensial valid
+### TC-LOGIN-001 - Login dengan kredensial valid
 
 | | |
 |---|---|
 | **Prioritas** | High |
 | **Prasyarat** | Berada di halaman `/login` |
-| **Teknik** | Equivalence partitioning — partition "valid" |
+| **Teknik** | Equivalence partitioning - partition "valid" |
 
 **Given** saya berada di halaman login
 **When** saya isi username `tomsmith`, password `SuperSecretPassword!`, lalu klik Login
@@ -20,13 +20,13 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
-### TC-LOGIN-002 — Login dengan password salah
+### TC-LOGIN-002 - Login dengan password salah
 
 | | |
 |---|---|
 | **Prioritas** | High |
 | **Prasyarat** | Berada di halaman `/login` |
-| **Teknik** | Equivalence partitioning — partition "password salah" |
+| **Teknik** | Equivalence partitioning - partition "password salah" |
 
 **Given** saya berada di halaman login
 **When** saya isi username benar, password salah, lalu klik Login
@@ -34,13 +34,13 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
-### TC-LOGIN-003 — Login dengan username salah
+### TC-LOGIN-003 - Login dengan username salah
 
 | | |
 |---|---|
 | **Prioritas** | High |
 | **Prasyarat** | Berada di halaman `/login` |
-| **Teknik** | Equivalence partitioning — partition "username salah" |
+| **Teknik** | Equivalence partitioning - partition "username salah" |
 
 **Given** saya berada di halaman login
 **When** saya isi username salah, password benar, lalu klik Login
@@ -50,12 +50,12 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ## Modul: Inputs (`/inputs`)
 
-### TC-IN-001 — Masukkan angka valid
+### TC-IN-001 - Masukkan angka valid
 
 | | |
 |---|---|
 | **Prioritas** | Medium |
-| **Teknik** | Equivalence partitioning — partition "angka valid" |
+| **Teknik** | Equivalence partitioning - partition "angka valid" |
 
 **Given** saya berada di halaman inputs
 **When** saya masukkan angka `42`
@@ -63,12 +63,12 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
-### TC-IN-002 — Input huruf ditolak browser
+### TC-IN-002 - Input huruf ditolak browser
 
 | | |
 |---|---|
 | **Prioritas** | Medium |
-| **Teknik** | Equivalence partitioning — partition "bukan angka" |
+| **Teknik** | Equivalence partitioning - partition "bukan angka" |
 
 **Given** saya berada di halaman inputs
 **When** saya ketik huruf `abc` pada field
@@ -76,12 +76,12 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
-### TC-IN-003 — Batas atas angka besar
+### TC-IN-003 - Batas atas angka besar
 
 | | |
 |---|---|
 | **Prioritas** | Low |
-| **Teknik** | Boundary value analysis — mendekati batas atas |
+| **Teknik** | Boundary value analysis - mendekati batas atas |
 
 **Given** saya berada di halaman inputs
 **When** saya masukkan angka `9999`
@@ -91,7 +91,7 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ## Modul: JavaScript Alerts (`/javascript_alerts`)
 
-### TC-AL-001 — Alert diterima (accept)
+### TC-AL-001 - Alert diterima (accept)
 
 **Given** saya berada di halaman JavaScript Alerts
 **When** saya klik tombol "Click for JS Alert" dan menerima alert
@@ -101,12 +101,12 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ## Modul: Broken Images (`/broken_images`)
 
-### TC-BI-001 — Jumlah gambar sesuai harapan
+### TC-BI-001 - Jumlah gambar sesuai harapan
 
 | | |
 |---|---|
 | **Prioritas** | Medium |
-| **Teknik** | Equivalence partitioning — jumlah elemen pada halaman |
+| **Teknik** | Equivalence partitioning - jumlah elemen pada halaman |
 
 **Given** saya berada di halaman Broken Images
 **When** halaman selesai dimuat
@@ -114,12 +114,12 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
-### TC-BI-002 — Gambar rusak terdeteksi
+### TC-BI-002 - Gambar rusak terdeteksi
 
 | | |
 |---|---|
 | **Prioritas** | Medium |
-| **Teknik** | Negative testing — memastikan kerusakan terdeteksi |
+| **Teknik** | Negative testing - memastikan kerusakan terdeteksi |
 
 **Given** saya berada di halaman Broken Images
 **When** saya periksa setiap gambar yang selesai dimuat
@@ -129,12 +129,12 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ## Modul: Download (`/download`)
 
-### TC-DL-001 — Unduh file dengan nama benar
+### TC-DL-001 - Unduh file dengan nama benar
 
 | | |
 |---|---|
 | **Prioritas** | High |
-| **Teknik** | Equivalence partitioning — link unduhan valid |
+| **Teknik** | Equivalence partitioning - link unduhan valid |
 
 **Given** saya berada di halaman Download
 **When** saya klik link file pertama di daftar
@@ -142,12 +142,12 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
-### TC-DL-002 — Halaman menyediakan banyak file
+### TC-DL-002 - Halaman menyediakan banyak file
 
 | | |
 |---|---|
 | **Prioritas** | Low |
-| **Teknik** | Boundary value — batas bawah jumlah link |
+| **Teknik** | Boundary value - batas bawah jumlah link |
 
 **Given** saya berada di halaman Download
 **When** halaman selesai dimuat
@@ -157,7 +157,7 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ## Modul: iFrame (`/iframe`)
 
-### TC-IFR-001 — Heading halaman benar
+### TC-IFR-001 - Heading halaman benar
 
 **Given** saya berada di halaman iFrame
 **When** halaman selesai dimuat
@@ -165,7 +165,7 @@ Kode test: `TC-<MODUL>-<URUT>`.
 
 ---
 
-### TC-IFR-002 — Konten default editor tampil
+### TC-IFR-002 - Konten default editor tampil
 
 **Given** saya berada di halaman iFrame
 **When** saya membuka isi iframe
