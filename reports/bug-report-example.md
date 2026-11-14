@@ -4,7 +4,7 @@
 
 ## [BUG-001] Editor TinyMCE di halaman iFrame tidak bisa digunakan (read-only)
 
-> Ditemukan saat menjalankan test otomatis — 11 Oktober 2026.
+> Ditemukan saat menjalankan test otomatis 11 Oktober 2026.
 
 | | |
 |---|---|
@@ -56,7 +56,7 @@ Kedua checkbox memiliki teks keterangan yang menjelaskan isi opsi.
 Checkbox pertama kosong tanpa keterangan; checkbox kedua bertuliskan "check me out".
 
 ### Catatan
-Dampaknya pada usability — pengguna tidak yakin apa yang dicentang. Untuk automation testing ini tidak menghalangi test, hanya dicatat sebagai temuan.
+Dampaknya pada usability pengguna tidak yakin apa yang dicentang. Untuk automation testing ini tidak menghalangi test, hanya dicatat sebagai temuan.
 
 ---
 
