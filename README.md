@@ -4,7 +4,7 @@
 
 [![Tests](https://github.com/anonbanana/qa-automation-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/anonbanana/qa-automation-portfolio/actions/workflows/ci.yml)
 
-Basic-level QA automation portfolio (ISTQB Foundation Level) built with Playwright against [the-internet.herokuapp.com](https://the-internet.herokuapp.com) — a free public practice site.
+Basic-level QA automation portfolio (ISTQB Foundation Level) built with Playwright against [the-internet.herokuapp.com](https://the-internet.herokuapp.com) a free public practice site.
 
 ## About this project
 
@@ -86,5 +86,5 @@ npm run report
 
 ## Notes
 
-- The target site runs on a free Heroku dyno — it falls asleep, so the first request is slow. Timeouts are configured accordingly, and CI warms the site up before running tests.
-- Some tests may report as *flaky* (passing on retry) because the server is slow — the tests themselves are correct.
+- The target site runs on a free Heroku dyno it falls asleep, so the first request is slow. Timeouts are configured accordingly, and CI warms the site up before running tests.
+- Some tests may report as *flaky* (passing on retry) because the server is slow the tests themselves are correct.
